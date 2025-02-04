@@ -3,7 +3,7 @@ Process this file working through each step to ensure each objective is met.
 
 ## High Level Goals
 
-- Improve the front end webpage for better user experience.
+- Improve the front end webpage.
 - Ensure the Wikipedia article content can be pasted and edited in a scrollable area.
 - Place the "Summarize" button below the editable content on the same page.
 
@@ -24,4 +24,12 @@ Process this file working through each step to ensure each objective is met.
   - Follow Google-style docstrings and coding conventions as outlined in the DEVELOPER_GUIDE.md.
 - **Other technical guidance**:
   - Test the changes to ensure the editable content works as expected and the button is positioned correctly.
+
+## Project Context
+
+### Beginning files
+- **List of files that exist at start - what files exist at start?**
+
+### Ending files
+- **List of files that will exist at end - what files will exist at end?**
 
