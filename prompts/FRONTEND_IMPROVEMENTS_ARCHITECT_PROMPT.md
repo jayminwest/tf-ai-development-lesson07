@@ -66,5 +66,6 @@ Process this prompt working through each step to ensure each objective is met.
    ```code-example
    - Manually test the changes in a web browser to ensure that the editable content works as expected and the button is positioned correctly.
    - Ensure that all changes meet the high-level and mid-level goals outlined in the prompt.
+   - Provide visual feedback to the user when the "Summarize" button is clicked, such as a loading spinner or a disabled state for the button.
    - Follow Google-style docstrings and coding conventions as outlined in `DEVELOPER_GUIDE.md`.
    ```
