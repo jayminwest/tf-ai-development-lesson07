@@ -32,4 +32,11 @@ def new_llm_button(button_name: str = "", button_prompt: str = "") -> None:
     coder.run(prompt)
 
 if __name__ == "__main__":
-    
+    if len(sys.argv) != 3:
+        print("Usage: python new_prompt_button.py <button_name> <button_prompt>")
+        sys.exit(1)
+
+    button_name = sys.argv[1]
+    button_prompt = sys.argv[2]
+
+    new_llm_button(button_name, button_prompt)
