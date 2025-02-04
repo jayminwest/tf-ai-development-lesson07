@@ -19,12 +19,24 @@
 
 {% block content %}
 <h1>Wikipedia Article Summarizer</h1>
+
+<!-- Input for article title -->
+<input type="text" name="article_title" id="article-title-input" placeholder="Enter Wikipedia article title">
+<button id="fetch-article">Fetch Article</button>
+<div id="loading" style="display: none;">Loading...</div>
+
+<!-- Display fetched content -->
+<h2 id="article-title"></h2>
+<pre id="raw-text"></pre>
 <div id="article-content" class="editable" contenteditable="true">
     Paste your Wikipedia article here...
 </div>
-<div class="button-container">
-    <button onclick="summarizeArticle()">Summarize</button>
-</div>
+
+<!-- Button to summarize the article -->
+<button onclick="summarizeArticle()">Summarize Article</button>
+
+<!-- Display summary results -->
+<div id="analysis-results"></div>
 
 <script src="{{ url_for('static', filename='app.js') }}"></script>
 {% endblock %}

@@ -19,7 +19,7 @@
  * @throws {Error} If article title is empty or network request fails
  */
 document.getElementById('fetch-article').addEventListener('click', async () => {
-    const articleTitleInput = document.querySelector('input[name="article_title"]');
+    const articleTitleInput = document.querySelector('#article-title-input');
     const articleTitle = articleTitleInput.value.trim();
     if (!articleTitle) {
         alert('Please enter a Wikipedia article title.');
