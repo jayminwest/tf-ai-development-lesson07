@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import asyncio
 import nltk
 from wikipedia_fetcher import fetch_wikipedia_article_content
-from article_analysis import generate_summary, process_text, analyze_text
+from article_analysis import generate_llm_response, process_text, analyze_text
 from button_config import ButtonRegistry, ButtonConfig, initialize_default_buttons
 
 # Initialize the default buttons
@@ -33,21 +33,7 @@ def fetch():
 
 async def process_analysis(content: str, config: ButtonConfig) -> str:
     """Generic handler for processing text analysis with a configuration."""
-    if config.id == "fun_facts":
-        # Get fun facts using LLM
-        facts = await generate_summary(f"{config.prompt}\n\n{content}")
-        
-        # Format as HTML list
-        html_result = f"""
-            <div class='fun-facts-result'>
-                <h4>Fun Facts:</h4>
-                <div class='facts-list'>
-                    {facts}
-                </div>
-            </div>
-        """
-        return html_result
-    elif config.id == "analyze_stats":
+    if config.id == "analyze_stats":
         # Use the existing analyze_text function
         tokens, sentences = process_text(content)
         stats, freq_dist = analyze_text(tokens, sentences)
@@ -65,12 +51,23 @@ async def process_analysis(content: str, config: ButtonConfig) -> str:
             </div>
         """
         return html_result
-    elif config.id == "summarize":
-        # Use the existing generate_summary function with the configured prompt
-        return await generate_summary(f"{config.prompt}\n\n{content}")
     else:
-        # Fallback for any other button types
-        return await generate_summary(f"{config.prompt}\n\n{content}")
+        # Handle all LLM-based analysis (summary, fun facts, etc)
+        result = await generate_llm_response(config.prompt, content)
+        
+        if config.id == "fun_facts":
+            # Format fun facts as HTML
+            return f"""
+                <div class='fun-facts-result'>
+                    <h4>Fun Facts:</h4>
+                    <div class='facts-list'>
+                        {result}
+                    </div>
+                </div>
+            """
+        else:
+            # Return plain text for other types (summary etc)
+            return result
 
 
 def register_analysis_route(config: ButtonConfig):

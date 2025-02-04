@@ -33,20 +33,21 @@ def process_text(text: str) -> Tuple[List[str], List[str]]:
     
     return tokens, sentences
 
-async def generate_summary(text: str) -> str:
-    """Generate a summary of the text using Ollama.
+async def generate_llm_response(prompt: str, content: str) -> str:
+    """Generate a response using Ollama with any prompt.
 
     Args:
-        text: The text to summarize.
+        prompt: The instruction prompt to use
+        content: The content to analyze
 
     Returns:
-        str: The summary of the text.
+        str: The LLM response
     """
-    prompt = f"Summarize the following text concisely:\n\n{text}"
+    full_prompt = f"{prompt}\n\n{content}" if prompt else content
     response = await asyncio.to_thread(
         chat,
         model='deepseek-r1:8b',
-        messages=[{'role': 'user', 'content': prompt}]
+        messages=[{'role': 'user', 'content': full_prompt}]
     )
     return response.message.content.strip()
 
