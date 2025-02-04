@@ -1,5 +1,5 @@
 # Architect Prompt Template
-Process this file working through each step to ensure each objective is met.
+Process this prompt working through each step to ensure each objective is met.
 
 ## High Level Goals
 
@@ -44,9 +44,6 @@ Process this file working through each step to ensure each objective is met.
 1. **First task - Add an editable `<div>` or `<textarea>` for Wikipedia article content**
    ```code-example
    - Modify the `templates/index.html` file to include a scrollable, editable `<div>` using the `contenteditable="true"` attribute.
-   
-   - No specific function in `app.py` or `static/app.js` is needed for this step. This task focuses on modifying the HTML structure.
-
    - Ensure that the `<div>` has a unique ID and class for easy styling with CSS.
    - Follow Google-style docstrings and coding conventions as outlined in `DEVELOPER_GUIDE.md`.
    ```
@@ -54,9 +51,6 @@ Process this file working through each step to ensure each objective is met.
 2. **Second task - Add CSS styles to make the editable content scrollable and visually appealing**
    ```code-example
    - Modify the `static/styles.css` file to add styles for the editable `<div>`, making it scrollable with `overflow-y: auto;`.
-
-   - No specific function in `app.py` or `static/app.js` is needed for this step. This task focuses on modifying the CSS.
-
    - Ensure that the styles applied to the `<div>` enhance its visual appeal and usability.
    - Follow Google-style docstrings and coding conventions as outlined in `DEVELOPER_GUIDE.md`.
    ```
@@ -64,9 +58,6 @@ Process this file working through each step to ensure each objective is met.
 3. **Third task - Position the "Summarize" button below the editable content**
    ```code-example
    - Modify the `templates/index.html` file to position the "Summarize" button directly below the editable `<div>`.
-
-   - No specific function in `app.py` or `static/app.js` is needed for this step. This task focuses on modifying the HTML structure.
-
    - Ensure that the button is styled consistently with other elements on the page.
    - Follow Google-style docstrings and coding conventions as outlined in `DEVELOPER_GUIDE.md`.
    ```
@@ -74,9 +65,6 @@ Process this file working through each step to ensure each objective is met.
 4. **Fourth task - Test the changes to ensure functionality**
    ```code-example
    - Manually test the changes in a web browser to ensure that the editable content works as expected and the button is positioned correctly.
-
-   - No specific function in `app.py` or `static/app.js` is needed for this step. This task focuses on manual testing of the front-end.
-
    - Ensure that all changes meet the high-level and mid-level goals outlined in the prompt.
    - Follow Google-style docstrings and coding conventions as outlined in `DEVELOPER_GUIDE.md`.
    ```
