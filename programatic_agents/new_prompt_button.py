@@ -1,18 +1,28 @@
 from aider.coders import Coder
-from aider.models import Model    context_editable = [str(pyproject_path)]
+from aider.models import Model
 
-def new_llm_button(button_name="", button_prompt=""):
-    context_read_only = ["README.md"]
+MODEL_NAME = "sonnet"
+CONTEXT_EDITABLE = [str(pyproject_path)]
+CONTEXT_READ_ONLY = ["README.md"]
 
-    prompt = f""
+def new_llm_button(button_name: str = "", button_prompt: str = "") -> None:
+    """
+    Create a new LLM button with the specified name and prompt.
 
-    model = Model("sonnet")
+    Args:
+        button_name (str): The name of the button.
+        button_prompt (str): The prompt for the button.
+    """
+
+    prompt = f"Button Name: {button_name}\nButton Prompt: {button_prompt}"
+
+    model = Model(MODEL_NAME)
 
     # Initialize AI Coding Assistant
     coder = Coder.create(
         main_model=model,
-        fnames=context_editable,
-        read_only_fnames=context_read_only,
+        fnames=CONTEXT_EDITABLE,
+        read_only_fnames=CONTEXT_READ_ONLY,
         auto_commits=False,
         suggest_shell_commands=False,
     )
@@ -20,4 +30,4 @@ def new_llm_button(button_name="", button_prompt=""):
     # Run the version bump
     coder.run(prompt)
     
-    if __name__ == "__main__":
+if __name__ == "__main__":
