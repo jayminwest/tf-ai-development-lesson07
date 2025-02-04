@@ -11,7 +11,7 @@ CONTEXT_EDITABLE = [
     "static/app.js",
     "app.py",
 ]
-CONTEXT_READ_ONLY = ["README.md"]
+CONTEXT_READ_ONLY = ["prompts/DEVELOPER_GUIDE.md"]
 
 def new_llm_button(button_name: str = "", button_prompt: str = "") -> None:
     """
