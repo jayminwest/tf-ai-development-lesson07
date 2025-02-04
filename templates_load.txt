@@ -1,5 +1,0 @@
-/drop
-/add       templates/base.html
-/add       templates/error.html
-/add       templates/index.html
-/read-only prompts/DEVELOPER_GUIDE.md

@@ -1,29 +1,28 @@
 # Architect Prompt Template
-Process this prompt working through each step to ensure each objective is met.
+Process this prompt working through each step to ensure the objective is met.
 
-## High Level Goals
+## High Level Goal
 
-- Improve the front end webpage.
-- Ensure the Wikipedia article content can be pasted and edited in a scrollable area.
-- Place the "Summarize" button below the editable content on the same page.
+- Ensure that the Wikipedia article content can be pasted, edited, and scrolled within the webpage, without affecting the current functionality of fetching wiki articles.
 
 ## Mid Level Goals
 
-- Modify the HTML structure to include an editable `<div>` or `<textarea>` for the Wikipedia article.
+- Modify the HTML structure to include an editable element (using `contenteditable="true"`) for the Wikipedia article.
 - Add CSS styles to make the editable content scrollable and visually appealing.
-- Ensure the "Summarize" button is positioned correctly below the editable content.
+- Maintain the existing functionality of fetching Wikipedia articles.
 
 ## Implementation Guidelines
-- **Important technical details**:
-  - Use `contenteditable="true"` attribute for an editable `<div>`.
-  - Apply CSS properties like `overflow-y: auto;` to make the content area scrollable.
-  - Style the button and container for a clean and user-friendly interface.
+- **Technical details**:
+  - Use an editable `<div>` with the attribute `contenteditable="true"` to allow in-browser text editing.
+  - Apply CSS properties such as `overflow-y: auto;` to ensure the content area is scrollable.
+  - Style the editable area to be clean and user-friendly.
+  - **Important**: Do not modify any backend or JavaScript code that is responsible for fetching Wikipedia articles. This update is only to change the way the content is displayed.
 - **Dependencies and requirements**:
-  - Ensure the HTML, CSS, and JavaScript files are correctly linked in the project.
-- **Coding standards to follow**:
+  - Ensure that the HTML and CSS files are properly linked in the project.
+- **Coding standards**:
   - Follow Google-style docstrings and coding conventions as outlined in the DEVELOPER_GUIDE.md.
 - **Other technical guidance**:
-  - Test the changes to ensure the editable content works as expected and the button is positioned correctly.
+  - Test the editable and scrollable functionality to ensure it works as expected while the article fetching remains unchanged.
 
 ## Project Context
 
@@ -41,31 +40,25 @@ Process this prompt working through each step to ensure each objective is met.
 
 ## Low Level Goals
 
-1. **First task - Add an editable `<div>` or `<textarea>` for Wikipedia article content**
-   ```code-example
-   - Modify the `templates/index.html` file to include a scrollable, editable `<div>` using the `contenteditable="true"` attribute.
-   - Ensure that the `<div>` has a unique ID and class for easy styling with CSS.
-   - Follow Google-style docstrings and coding conventions as outlined in `DEVELOPER_GUIDE.md`.
+1. **Add an editable element for the Wikipedia article content**
+   ```html
+   <!-- Example snippet in templates/index.html -->
+   <div id="wikipedia-article" class="editable-content" contenteditable="true">
+       Paste your Wikipedia article here...
+   </div>
    ```
+   *Note: This should only affect the display and editing of the article content, not the fetching process.*
 
-2. **Second task - Add CSS styles to make the editable content scrollable and visually appealing**
-   ```code-example
-   - Modify the `static/styles.css` file to add styles for the editable `<div>`, making it scrollable with `overflow-y: auto;`.
-   - Ensure that the styles applied to the `<div>` enhance its visual appeal and usability.
-   - Follow Google-style docstrings and coding conventions as outlined in `DEVELOPER_GUIDE.md`.
-   ```
-
-3. **Third task - Position the "Summarize" button below the editable content**
-   ```code-example
-   - Modify the `templates/index.html` file to position the "Summarize" button directly below the editable `<div>`.
-   - Ensure that the button is styled consistently with other elements on the page.
-   - Follow Google-style docstrings and coding conventions as outlined in `DEVELOPER_GUIDE.md`.
-   ```
-
-4. **Fourth task - Test the changes to ensure functionality**
-   ```code-example
-   - Manually test the changes in a web browser to ensure that the editable content works as expected and the button is positioned correctly.
-   - Ensure that all changes meet the high-level and mid-level goals outlined in the prompt.
-   - Provide visual feedback to the user when the "Summarize" button is clicked, such as a loading spinner or a disabled state for the button.
-   - Follow Google-style docstrings and coding conventions as outlined in `DEVELOPER_GUIDE.md`.
+2. **Style the editable content to be scrollable and visually appealing**
+   ```css
+   /* Example snippet in static/styles.css */
+   .editable-content {
+       width: 100%;
+       height: 400px; /* Adjust height as needed */
+       border: 1px solid #ccc;
+       padding: 10px;
+       overflow-y: auto; /* Makes the content scrollable */
+       font-family: Arial, sans-serif;
+       background-color: #fff;
+   }
    ```

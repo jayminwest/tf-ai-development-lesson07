@@ -1,8 +1,10 @@
 # Lesson 7: Scaling your team
 
 ## Running 2+ Instances of Aider at Once
+    - Using auto-yes
 
 ## Using Aider in Python Code
+    - Setup program to create new buttons and prompts
 
 ## DEMO: Taking the Wiki Project and making it actually useful
     - Making it visually more appealing
