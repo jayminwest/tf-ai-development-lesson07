@@ -65,6 +65,16 @@ async def process_analysis(content: str, config: ButtonConfig) -> str:
                     </div>
                 </div>
             """
+        elif config.id == "key_figures":
+            # Format key figures as HTML
+            return f"""
+                <div class='key-figures-result'>
+                    <h4>Key People Mentioned:</h4>
+                    <div class='figures-list'>
+                        {result}
+                    </div>
+                </div>
+            """
         else:
             # Return plain text for other types (summary etc)
             return result
