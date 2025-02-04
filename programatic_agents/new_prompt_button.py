@@ -1,8 +1,10 @@
 import sys
+from pathlib import Path
 from aider.coders import Coder
 from aider.models import Model
 
 MODEL_NAME = "sonnet"
+pyproject_path = Path("pyproject.toml")
 CONTEXT_EDITABLE = [str(pyproject_path)]
 CONTEXT_READ_ONLY = ["README.md"]
 
