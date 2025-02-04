@@ -98,5 +98,3 @@ class ButtonHandler {
     }
 }
 
-// Initialize the analyze button using the new handler
-ButtonHandler.createHandler('analyze-article', 'analyze');

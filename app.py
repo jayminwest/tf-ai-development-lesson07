@@ -55,23 +55,12 @@ async def process_analysis(content: str, config: ButtonConfig) -> str:
         # Use the existing generate_summary function
         return await generate_summary(f"{config.prompt}\n\n{content}")
 
-@app.route('/analyze', methods=['POST'])
-async def analyze():
-    data = request.get_json()
-    content = data.get('content')
-    if not content:
-        return jsonify({'error': 'Content is required'}), 400
-
-    try:
-        summary = await process_analysis(content, "Summarize the following text:")
-        return jsonify({'result': summary})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
 
 def register_analysis_route(config: ButtonConfig):
     """Dynamically register a new analysis route."""
-    @app.route(f'/{config.endpoint}', methods=['POST'])
-    async def handler():
+    endpoint_name = f'handle_{config.id}'
+    
+    async def route_handler():
         data = request.get_json()
         content = data.get('content')
         if not content:
@@ -86,8 +75,16 @@ def register_analysis_route(config: ButtonConfig):
         except Exception as e:
             return jsonify({'error': str(e)}), 500
     
-    handler.__name__ = f'handle_{config.id}'
-    return handler
+    # Set the endpoint name before registration
+    route_handler.__name__ = endpoint_name
+    
+    # Register the route with the unique endpoint name
+    app.add_url_rule(
+        f'/{config.endpoint}',
+        endpoint=endpoint_name,
+        view_func=route_handler,
+        methods=['POST']
+    )
 
 def register_all_buttons():
     """Register all buttons from the registry."""
