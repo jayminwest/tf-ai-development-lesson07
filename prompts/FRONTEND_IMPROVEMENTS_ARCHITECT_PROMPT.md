@@ -40,28 +40,55 @@ Process this file working through each step to ensure each objective is met.
 - Potentially modified or extended `static/app.js`
 
 ## Low Level Goals
-> Ordered from first to last
 
-1. **First task - what is the first task?**  
-```code-example
-What prompt would you run to complete this task?
-What file do you want to work on?
-What function do you want to work on?
-What are details you want to add to ensure consistency?
-```
+1. **First task - Add an editable `<div>` or `<textarea>` for Wikipedia article content**
+   ```code-example
+   What prompt would you run to complete this task?
+   - Modify the `templates/index.html` file to include a scrollable, editable `<div>` using the `contenteditable="true"` attribute.
+   
+   What function do you want to work on?
+   - No specific function in `app.py` or `static/app.js` is needed for this step. This task focuses on modifying the HTML structure.
 
-2. **Second task - what is the second task?**  
-```code-example
-What prompt would you run to complete this task?
-What file do you want to work on?
-What function do you want to work on?
-What are details you want to add to ensure consistency?
-```
+   What are details you want to add to ensure consistency?
+   - Ensure that the `<div>` has a unique ID and class for easy styling with CSS.
+   - Follow Google-style docstrings and coding conventions as outlined in `DEVELOPER_GUIDE.md`.
+   ```
 
-3. **Third task - what is the third task?**  
-```code-example
-What prompt would you run to complete this task?
-What file do you want to work on?
-What function do you want to work on?
-What are details you want to add to ensure consistency?
-```
+2. **Second task - Add CSS styles to make the editable content scrollable and visually appealing**
+   ```code-example
+   What prompt would you run to complete this task?
+   - Modify the `static/styles.css` file to add styles for the editable `<div>`, making it scrollable with `overflow-y: auto;`.
+
+   What function do you want to work on?
+   - No specific function in `app.py` or `static/app.js` is needed for this step. This task focuses on modifying the CSS.
+
+   What are details you want to add to ensure consistency?
+   - Ensure that the styles applied to the `<div>` enhance its visual appeal and usability.
+   - Follow Google-style docstrings and coding conventions as outlined in `DEVELOPER_GUIDE.md`.
+   ```
+
+3. **Third task - Position the "Summarize" button below the editable content**
+   ```code-example
+   What prompt would you run to complete this task?
+   - Modify the `templates/index.html` file to position the "Summarize" button directly below the editable `<div>`.
+
+   What function do you want to work on?
+   - No specific function in `app.py` or `static/app.js` is needed for this step. This task focuses on modifying the HTML structure.
+
+   What are details you want to add to ensure consistency?
+   - Ensure that the button is styled consistently with other elements on the page.
+   - Follow Google-style docstrings and coding conventions as outlined in `DEVELOPER_GUIDE.md`.
+   ```
+
+4. **Fourth task - Test the changes to ensure functionality**
+   ```code-example
+   What prompt would you run to complete this task?
+   - Manually test the changes in a web browser to ensure that the editable content works as expected and the button is positioned correctly.
+
+   What function do you want to work on?
+   - No specific function in `app.py` or `static/app.js` is needed for this step. This task focuses on manual testing of the front-end.
+
+   What are details you want to add to ensure consistency?
+   - Ensure that all changes meet the high-level and mid-level goals outlined in the prompt.
+   - Follow Google-style docstrings and coding conventions as outlined in `DEVELOPER_GUIDE.md`.
+   ```
