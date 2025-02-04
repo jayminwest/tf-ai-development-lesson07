@@ -39,3 +39,29 @@ Process this file working through each step to ensure each objective is met.
 - Potentially modified or extended `app.py`
 - Potentially modified or extended `static/app.js`
 
+## Low Level Goals
+> Ordered from first to last
+
+1. **First task - what is the first task?**  
+```code-example
+What prompt would you run to complete this task?
+What file do you want to work on?
+What function do you want to work on?
+What are details you want to add to ensure consistency?
+```
+
+2. **Second task - what is the second task?**  
+```code-example
+What prompt would you run to complete this task?
+What file do you want to work on?
+What function do you want to work on?
+What are details you want to add to ensure consistency?
+```
+
+3. **Third task - what is the third task?**  
+```code-example
+What prompt would you run to complete this task?
+What file do you want to work on?
+What function do you want to work on?
+What are details you want to add to ensure consistency?
+```
