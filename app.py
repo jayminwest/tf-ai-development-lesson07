@@ -52,32 +52,44 @@ async def process_analysis(content: str, config: ButtonConfig) -> str:
         """
         return html_result
     else:
-        # Handle all LLM-based analysis (summary, fun facts, etc)
+        # Handle LLM-based analysis with different formatting per type
         result = await generate_llm_response(config.prompt, content)
         
         if config.id == "fun_facts":
-            # Format fun facts as HTML
+            # Split facts and format as bullet points
+            facts = result.split('\n')
+            formatted_facts = "".join(f"<li>{fact}</li>" for fact in facts if fact.strip())
             return f"""
                 <div class='fun-facts-result'>
                     <h4>Fun Facts:</h4>
-                    <div class='facts-list'>
-                        {result}
-                    </div>
+                    <ul class='facts-list'>
+                        {formatted_facts}
+                    </ul>
                 </div>
             """
         elif config.id == "key_figures":
-            # Format key figures as HTML
+            # Split figures and format as bullet points
+            figures = result.split('\n')
+            formatted_figures = "".join(f"<li>{figure}</li>" for figure in figures if figure.strip())
             return f"""
                 <div class='key-figures-result'>
                     <h4>Key People Mentioned:</h4>
-                    <div class='figures-list'>
-                        {result}
-                    </div>
+                    <ul class='figures-list'>
+                        {formatted_figures}
+                    </ul>
+                </div>
+            """
+        elif config.id == "summarize":
+            # Format summary in a distinct way
+            return f"""
+                <div class='summary-result'>
+                    <h4>Summary:</h4>
+                    <p>{result}</p>
                 </div>
             """
         else:
-            # Return plain text for other types (summary etc)
-            return result
+            # Generic fallback formatting
+            return f"<div class='analysis-result'>{result}</div>"
 
 
 def register_analysis_route(config: ButtonConfig):

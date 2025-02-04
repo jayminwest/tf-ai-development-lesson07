@@ -44,6 +44,7 @@ async def generate_llm_response(prompt: str, content: str) -> str:
         str: The LLM response
     """
     full_prompt = f"{prompt}\n\n{content}" if prompt else content
+    print(f"Using prompt: {prompt}")  # Debug logging
     response = await asyncio.to_thread(
         chat,
         model='deepseek-r1:8b',
