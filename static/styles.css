@@ -1,0 +1,30 @@
+/**
+ * @fileoverview Main stylesheet for the Wikipedia Fetcher application.
+ *
+ * @description
+ * Defines the visual styling for the Wikipedia Fetcher application including
+ * layout, typography, component styles, and utility classes.
+ *
+ * @author Jaymin West <jaymin@tandemflow.com>
+ * @copyright 2024 TandemFlow
+ * @license MIT
+ */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+#loading {
+    display: none;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #f0f0f0;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+}
+
+.error {
+    color: red;
+}

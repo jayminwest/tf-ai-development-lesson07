@@ -1,0 +1,9 @@
+# Frontend Documentation Pipeline
+
+# Add all frontend files to the chat session
+/add static/app.js static/styles.css templates/*.html
+
+/code UPDATE frontend components to have google style documentation. Use author name Jaymin West and Organization name TandemFlow
+
+# Save changes
+/commit "Add comprehensive frontend documentation"

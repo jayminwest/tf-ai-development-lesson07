@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!--
+ * @fileoverview Base template for the Wikipedia Fetcher application.
+ * 
+ * @description
+ * Provides the common HTML structure used across all pages including common meta
+ * tags, title, CSS stylesheet inclusion, loading indicator element, and content
+ * block for page-specific content.
+ *
+ * @author Jaymin West <jaymin@tandemflow.com>
+ * @copyright 2024 TandemFlow
+ * @license MIT
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Wikipedia Fetcher{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    {% block content %}{% endblock %}
+    <div id="loading" style="display: none;">Loading...</div>
+</body>
+</html>

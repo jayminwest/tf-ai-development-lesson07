@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{#
+ * @fileoverview Error page template for the Wikipedia Fetcher application.
+ *
+ * @description
+ * Displays error messages to users when exceptions or errors occur during
+ * application operation. Maintains consistent layout by extending base template.
+ *
+ * @requires {template} base.html Base template with common structure
+ *
+ * @author Jaymin West <jaymin@tandemflow.com>
+ * @copyright 2024 TandemFlow
+ * @license MIT
+#}
+
+{% block title %}Error{% endblock %}
+
+{% block content %}
+<h1>Error</h1>
+<p>{{ error }}</p>
+{% endblock %}
