@@ -1,37 +1,28 @@
 import sys
 from pathlib import Path
-from aider.coders import Coder
-from aider.models import Model
+from button_config import ButtonConfig, ButtonRegistry
 
-MODEL_NAME = "sonnet"
-pyproject_path = Path("pyproject.toml")
-CONTEXT_EDITABLE = [str(pyproject_path)]
-CONTEXT_READ_ONLY = ["README.md"]
-
-def new_llm_button(button_name: str = "", button_prompt: str = "") -> None:
+def new_llm_button(button_id: str, display_name: str, endpoint: str, prompt: str) -> None:
     """
-    Create a new LLM button with the specified name and prompt.
+    Create a new LLM button with the specified parameters.
 
     Args:
-        button_name (str): The name of the button.
-        button_prompt (str): The prompt for the button.
+        button_id (str): Unique identifier for the button
+        display_name (str): Display name shown on the button
+        endpoint (str): API endpoint for the button's action
+        prompt (str): The prompt to use for analysis
     """
-
-    prompt = f"Button Name: {button_name}\nButton Prompt: {button_prompt}"
-
-    model = Model(MODEL_NAME)
-
-    # Initialize AI Coding Assistant
-    coder = Coder.create(
-        main_model=model,
-        fnames=CONTEXT_EDITABLE,
-        read_only_fnames=CONTEXT_READ_ONLY,
-        auto_commits=False,
-        suggest_shell_commands=False,
+    # Create and register the button configuration
+    config = ButtonConfig(
+        id=button_id,
+        display_name=display_name,
+        endpoint=endpoint,
+        prompt=prompt
     )
+    ButtonRegistry.register(config)
 
-    # Create the new button
-    coder.run(prompt)
+    # The actual route registration happens in app.py when the Flask app starts
+    print(f"Button '{display_name}' has been registered successfully.")
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:

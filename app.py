@@ -3,6 +3,7 @@ import asyncio
 import nltk
 from wikipedia_fetcher import fetch_wikipedia_article_content
 from article_analysis import generate_summary
+from button_config import ButtonRegistry, ButtonConfig
 
 # Download required NLTK data
 nltk.download('punkt')
@@ -27,21 +28,40 @@ def fetch():
     else:
         return jsonify({'error': f"Article '{article_title}' not found"}), 404
 
+async def process_analysis(content: str, prompt: str) -> str:
+    """Generic handler for processing text analysis with a prompt."""
+    return await generate_summary(f"{prompt}\n\n{content}")
+
 @app.route('/analyze', methods=['POST'])
-def analyze():
+async def analyze():
     data = request.get_json()
     content = data.get('content')
     if not content:
         return jsonify({'error': 'Content is required'}), 400
 
     try:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        summary = loop.run_until_complete(generate_summary(content))
-        loop.close()
-        return jsonify({'summary': summary})
+        summary = await process_analysis(content, "Summarize the following text:")
+        return jsonify({'result': summary})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+def register_analysis_route(config: ButtonConfig):
+    """Dynamically register a new analysis route."""
+    @app.route(f'/{config.endpoint}', methods=['POST'])
+    async def handler():
+        data = request.get_json()
+        content = data.get('content')
+        if not content:
+            return jsonify({'error': 'Content is required'}), 400
+
+        try:
+            result = await process_analysis(content, config.prompt)
+            return jsonify({'result': result})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+    
+    # Rename the function to avoid naming conflicts
+    handler.__name__ = f'handle_{config.id}'
 
 @app.errorhandler(500)
 def internal_error(error):

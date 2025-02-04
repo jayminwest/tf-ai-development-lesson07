@@ -55,28 +55,44 @@ document.getElementById('fetch-article').addEventListener('click', async () => {
  * @fires {fetch} Sends POST request to /analyze endpoint with article content
  * @throws {Error} If no article content exists or network request fails
  */
-document.getElementById('analyze-article').addEventListener('click', async () => {
-    const content = document.getElementById('raw-text').textContent;
-    if (!content) {
-        alert('No article content to analyze.');
-        return;
+class ButtonHandler {
+    static createHandler(buttonId, endpoint) {
+        document.getElementById(buttonId).addEventListener('click', async () => {
+            const content = document.getElementById('raw-text').textContent;
+            if (!content) {
+                alert('No article content to analyze.');
+                return;
+            }
+
+            document.getElementById('loading').style.display = 'block';
+
+            try {
+                const response = await fetch(`/${endpoint}`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({content: content})
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const resultDiv = document.getElementById('analysis-results');
+                    resultDiv.innerHTML += `
+                        <div class="analysis-result">
+                            <h3>${buttonId} Results</h3>
+                            <p>${data.result}</p>
+                        </div>`;
+                } else {
+                    const errorData = await response.json();
+                    alert('Error: ' + errorData.error);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        });
     }
+}
 
-    document.getElementById('loading').style.display = 'block';
-
-    const response = await fetch('/analyze', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({content: content})
-    });
-
-    document.getElementById('loading').style.display = 'none';
-
-    if (response.ok) {
-        const data = await response.json();
-        document.getElementById('analysis-results').innerHTML = `<h3>Summary</h3><p>${data.summary}</p>`;
-    } else {
-        const errorData = await response.json();
-        alert('Error: ' + errorData.error);
-    }
-});
+// Initialize the analyze button using the new handler
+ButtonHandler.createHandler('analyze-article', 'analyze');
