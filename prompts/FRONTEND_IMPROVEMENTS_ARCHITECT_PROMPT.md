@@ -28,8 +28,14 @@ Process this file working through each step to ensure each objective is met.
 ## Project Context
 
 ### Beginning files
-- **List of files that exist at start - what files exist at start?**
+- `templates/index.html`
+- `static/styles.css`
+- `app.py` (if necessary)
+- `static/app.js` (if needed)
 
 ### Ending files
-- **List of files that will exist at end - what files will exist at end?**
+- Modified `templates/index.html`
+- Modified `static/styles.css`
+- Potentially modified or extended `app.py`
+- Potentially modified or extended `static/app.js`
 
