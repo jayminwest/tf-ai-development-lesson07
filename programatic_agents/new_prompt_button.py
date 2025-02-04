@@ -27,7 +27,7 @@ def new_llm_button(button_name: str = "", button_prompt: str = "") -> None:
         suggest_shell_commands=False,
     )
 
-    # Run the version bump
+    # Create the new button
     coder.run(prompt)
     
 if __name__ == "__main__":
