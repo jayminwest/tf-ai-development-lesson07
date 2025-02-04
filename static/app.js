@@ -55,9 +55,9 @@ document.getElementById('fetch-article').addEventListener('click', async () => {
  * @fires {fetch} Sends POST request to /analyze endpoint with article content
  * @throws {Error} If no article content exists or network request fails
  */
-document.getElementById('analyze-article').addEventListener('click', async () => {
-    const content = document.getElementById('raw-text').textContent;
-    if (!content) {
+function summarizeArticle() {
+    const content = document.getElementById('article-content').innerHTML;
+    if (!content.trim()) {
         alert('No article content to analyze.');
         return;
     }
@@ -79,4 +79,4 @@ document.getElementById('analyze-article').addEventListener('click', async () =>
         const errorData = await response.json();
         alert('Error: ' + errorData.error);
     }
-});
+}

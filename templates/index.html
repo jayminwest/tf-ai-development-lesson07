@@ -18,16 +18,12 @@
 {% block title %}Home - Wikipedia Fetcher{% endblock %}
 
 {% block content %}
-<h1>Wikipedia Article Fetcher</h1>
-<form id="article-form">
-    <input type="text" name="article_title" placeholder="Enter Wikipedia article title" required>
-    <button type="button" id="fetch-article">Fetch Article</button>
-</form>
-<div id="article-content" style="display: none;">
-    <h2 id="article-title"></h2>
-    <div id="raw-text"></div>
-    <button type="button" id="analyze-article">Analyze Article</button>
-    <div id="analysis-results"></div>
+<h1>Wikipedia Article Summarizer</h1>
+<div id="article-content" class="editable" contenteditable="true">
+    Paste your Wikipedia article here...
+</div>
+<div class="button-container">
+    <button onclick="summarizeArticle()">Summarize</button>
 </div>
 
 <script src="{{ url_for('static', filename='app.js') }}"></script>
