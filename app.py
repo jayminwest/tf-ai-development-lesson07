@@ -65,8 +65,11 @@ async def process_analysis(content: str, config: ButtonConfig) -> str:
             </div>
         """
         return html_result
+    elif config.id == "summarize":
+        # Use the existing generate_summary function with the configured prompt
+        return await generate_summary(f"{config.prompt}\n\n{content}")
     else:
-        # Use the existing generate_summary function
+        # Fallback for any other button types
         return await generate_summary(f"{config.prompt}\n\n{content}")
 
 
