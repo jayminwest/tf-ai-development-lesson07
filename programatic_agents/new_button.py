@@ -22,7 +22,46 @@ def new_llm_button(button_name: str = "", button_prompt: str = "") -> None:
         button_prompt (str): The prompt for the button.
     """
 
-    prompt = f"Button Name: {button_name}\nButton Prompt: {button_prompt}"
+    prompt = f"""Please add a new analysis button with the following details:
+Button Name: {button_name}
+Button Prompt: {button_prompt}
+
+Required changes:
+
+1. In button_config.py:
+   - Add a new ButtonConfig instance to initialize_default_buttons()
+   - Generate a unique button_id (lowercase, underscores for spaces)
+   - Set appropriate result_type ('text' or 'html')
+   - Include the provided prompt in the config
+
+2. In app.py:
+   - If needed, add a new processing case in process_analysis()
+   - Follow existing error handling patterns
+   - Maintain async/await pattern for LLM operations
+
+3. If custom analysis is needed:
+   In article_analysis.py:
+   - Add any new analysis functions
+   - Include type hints and docstrings
+   - Follow existing patterns for text processing
+
+4. If visualizations are needed:
+   In article_visualizations.py:
+   - Add new visualization functions
+   - Follow matplotlib/wordcloud patterns
+   - Ensure proper file paths and cleanup
+
+The following will update automatically:
+- Button rendering in templates/index.html
+- Event handling in static/app.js
+- Route registration in app.py
+
+Please maintain:
+- Consistent error handling
+- Type hints and docstrings
+- Async processing for LLM operations
+- Project code style guidelines
+"""
 
     model = Model(MODEL_NAME)
 
