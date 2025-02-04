@@ -5,7 +5,12 @@ from aider.coders import Coder
 from aider.models import Model
 
 MODEL_NAME = "sonnet"
-CONTEXT_EDITABLE = []
+CONTEXT_EDITABLE = [
+    "button_config.py",
+    "templates/index.html", 
+    "static/app.js",
+    "app.py",
+]
 CONTEXT_READ_ONLY = ["README.md"]
 
 def new_llm_button(button_name: str = "", button_prompt: str = "") -> None:
