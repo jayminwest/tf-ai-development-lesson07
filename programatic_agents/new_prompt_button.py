@@ -29,5 +29,5 @@ def new_llm_button(button_name: str = "", button_prompt: str = "") -> None:
 
     # Create the new button
     coder.run(prompt)
-    
+
 if __name__ == "__main__":
