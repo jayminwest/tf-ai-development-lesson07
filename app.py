@@ -33,7 +33,21 @@ def fetch():
 
 async def process_analysis(content: str, config: ButtonConfig) -> str:
     """Generic handler for processing text analysis with a configuration."""
-    if config.id == "analyze_stats":
+    if config.id == "fun_facts":
+        # Get fun facts using LLM
+        facts = await generate_summary(f"{config.prompt}\n\n{content}")
+        
+        # Format as HTML list
+        html_result = f"""
+            <div class='fun-facts-result'>
+                <h4>Fun Facts:</h4>
+                <div class='facts-list'>
+                    {facts}
+                </div>
+            </div>
+        """
+        return html_result
+    elif config.id == "analyze_stats":
         # Use the existing analyze_text function
         tokens, sentences = process_text(content)
         stats, freq_dist = analyze_text(tokens, sentences)
