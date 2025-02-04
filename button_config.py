@@ -25,3 +25,21 @@ class ButtonRegistry:
     @classmethod
     def get(cls, button_id: str) -> Optional[ButtonConfig]:
         return cls._buttons.get(button_id)
+
+def initialize_default_buttons():
+    """Initialize the default analysis buttons."""
+    ButtonRegistry.register(ButtonConfig(
+        id="summarize",
+        display_name="Generate Summary",
+        endpoint="summarize",
+        prompt="Summarize the following text concisely:",
+        result_type="text"
+    ))
+    
+    ButtonRegistry.register(ButtonConfig(
+        id="analyze_stats",
+        display_name="Analyze Statistics",
+        endpoint="analyze_stats",
+        prompt="",  # No prompt needed for statistical analysis
+        result_type="html"
+    ))

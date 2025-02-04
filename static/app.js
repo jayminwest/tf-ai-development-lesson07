@@ -76,10 +76,14 @@ class ButtonHandler {
                 if (response.ok) {
                     const data = await response.json();
                     const resultDiv = document.getElementById('analysis-results');
+                    const resultContent = data.result_type === 'html' ? 
+                        data.result : 
+                        `<p>${data.result}</p>`;
+                    
                     resultDiv.innerHTML += `
                         <div class="analysis-result">
                             <h3>${buttonId} Results</h3>
-                            <p>${data.result}</p>
+                            ${resultContent}
                         </div>`;
                 } else {
                     const errorData = await response.json();

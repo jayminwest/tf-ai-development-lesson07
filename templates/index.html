@@ -27,10 +27,20 @@
     <h2 id="article-title"></h2>
     <div id="raw-text" class="editable-content" contenteditable="true"></div>
     <div id="analysis-buttons">
-        <button type="button" id="analyze-article" class="analysis-button">Analyze Article</button>
+        {% for button in ButtonRegistry.get_all() %}
+        <button type="button" id="{{ button.id }}" class="analysis-button">
+            {{ button.display_name }}
+        </button>
+        {% endfor %}
     </div>
     <div id="analysis-results"></div>
 </div>
 
 <script src="{{ url_for('static', filename='app.js') }}"></script>
+<script>
+    // Initialize all buttons
+    {% for button in ButtonRegistry.get_all() %}
+    ButtonHandler.createHandler('{{ button.id }}', '{{ button.endpoint }}');
+    {% endfor %}
+</script>
 {% endblock %}
