@@ -35,15 +35,14 @@ Required changes:
    - Include the provided prompt in the config
 
 2. In app.py:
-   - If needed, add a new processing case in process_analysis()
+   - If HTML formatting is needed, add a new case in process_analysis()
+   - Otherwise, the general-purpose LLM handler will be used automatically
    - Follow existing error handling patterns
    - Maintain async/await pattern for LLM operations
 
-3. If custom analysis is needed:
-   In article_analysis.py:
-   - Add any new analysis functions
-   - Include type hints and docstrings
-   - Follow existing patterns for text processing
+3. No changes needed to article_analysis.py:
+   - The general-purpose generate_llm_response() function will handle the prompt
+   - Custom analysis only needed for non-LLM features
 
 4. If visualizations are needed:
    In article_visualizations.py:
