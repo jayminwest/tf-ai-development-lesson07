@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import asyncio
 import nltk
 from wikipedia_fetcher import fetch_wikipedia_article_content
-from article_analysis import generate_summary
+from article_analysis import process_text, generate_summary
 
 # Download required NLTK data
 nltk.download('punkt')
@@ -23,7 +23,13 @@ def fetch():
 
     success, content = fetch_wikipedia_article_content(article_title)
     if success:
-        return jsonify({'title': article_title, 'content': content})
+        tokens, sentences = process_text(content)
+        summary = asyncio.run(generate_summary(content))
+        return jsonify({
+            'title': article_title,
+            'content': content,
+            'summary': summary
+        })
     else:
         return jsonify({'error': f"Article '{article_title}' not found"}), 404
 
@@ -35,10 +41,7 @@ def analyze():
         return jsonify({'error': 'Content is required'}), 400
 
     try:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        summary = loop.run_until_complete(generate_summary(content))
-        loop.close()
+        summary = asyncio.run(generate_summary(content))
         return jsonify({'summary': summary})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
